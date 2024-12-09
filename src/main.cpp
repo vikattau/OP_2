@@ -15,6 +15,20 @@
 #include "Stud.h"
 #include "templates.h"
 
+/**
+* \brief Programos pradžia ir naudotojo pasirinkimo apdorojimas.
+*
+* Ši funkcija pateikia naudotojui pasirinkimo meniu ir pagal pasirinkimą vykdo atitinkamą veiksmą:
+* - 0: Studentų duomenų įvedimas ranka.
+* - 1: Studentų duomenų nuskaitymas iš failo.
+* - 2: Studentų duomenų generavimas ir įrašymas į failą.
+* - 3: Programos veikimo greičio analizė.
+* - 4: Trijų metodų taisyklės demonstravimas.
+* - 5: Zmogaus klasės demonstravimas.
+*
+* Po to, priklausomai nuo pasirinkto veiksmo, programoje pasirodo papildomi klausimai, pavyzdžiui:
+* pasirinkti, kokį konteinerį naudoti (vektorius arba sąrašas) arba kiek studentų generuoti.
+*/
 int main(){
 
     cout<< "Pasirinkite programa: \n" <<

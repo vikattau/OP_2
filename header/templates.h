@@ -4,9 +4,9 @@
 #include "Stud.h"
 
 /**
-* \brief Spausdina studentu lentele su ju galutiniais balais.
-* Si funkcija naudojama spausdinti studentu informacija (t.y varda, pavarde, galutini bala pagal vidurki bei mediana).
-* Sio programaoje naudojama vektoriams ir listam.
+* \brief Spausdina studentų lentelę su jų galutiniais balais.
+* Ši funkcija spausdina studentų informaciją, įskaitant vardą, pavardę, galutinį balą pagal vidurkį ir mediana.
+* Funkcija veikia tiek su vektoriais, tiek su sąrašais.
 *
 * \tparam Container Konteinerio tipas
 * \param stud Konteineris, kuriame saugomi studentai.
@@ -26,13 +26,13 @@ void spausdinimas(const Container &stud){
 
 };
 /**
-* \brief Nuskaito duomenis is failo i konteineri
-* Si funkcija nuskaito duomenis apie studentus is failo ir saugo konteineryje.
-* Jei failas neatidaromas, bus isvedamas klaidos pranesimas.
+* \brief Nuskaito duomenis iš failo į konteinerį.
+* Ši funkcija nuskaito studentų duomenis iš tekstinio failo ir saugo juos nurodytame konteineryje.
+* Jei failas negali būti atidarytas, bus išvedamas klaidos pranešimas.
 *
-* \tparam Container Konteinerio tipas
-* \param studentai Konteineris, kuriame saugomi nuskaityti studentai.
-* \param failoPavadinimas Tekstinio failo pavadinimas, is kurio bus nuskaitomi duomenis.
+* \tparam Container Konteinerio tipas.
+* \param studentai Konteineris, kuriame bus saugomi nuskaityti studentai.
+* \param failoPavadinimas Tekstinio failo pavadinimas, iš kurio bus nuskaitomi duomenys.
 */
 template <typename Container>
 void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
@@ -55,15 +55,17 @@ void skaitytiFaila(Container &studentai, const string & failoPavadinimas){
 
    failas.close();
 };
+
 /**
-* \brief Skisto studentus i vargsiukus ir galvocius
+* \brief Skirsto studentus į vargšiukus ir galvočius pagal galutinį balą.
 *
-* Jei galutinis balas mazesnis uz 5 studentas yra pridedamas prie vargsiuku vektoriaus\listo.
-* Kitu atveju pridedamas prie galvociu konteinerio.
+* Jei studento galutinis balas mažesnis už 5, jis pridedamas prie vargšiukų konteinerio.
+* Jei galutinis balas yra 5 ar didesnis, studentas pridedamas prie galvočių konteinerio.
+*
 * \tparam Container Konteinerio tipas.
-* \param studentai Konteineris, kuriame saugomi studentai
-* \param vargsiukai Konteineris, kuriame saugomi vargsiukai studentai
-* \param galvociai Konteineris, kuriame saugomi galvociai studentai.
+* \param studentai Konteineris, kuriame saugomi visi studentai.
+* \param vargsiukai Konteineris, kuriame bus saugomi studentai su galutiniu balu mažesniu už 5.
+* \param galvociai Konteineris, kuriame bus saugomi studentai su galutiniu balu 5 ir didesniu.
 */
 template <typename Container>
 void studentuSkirstymas(const Container &studentai, Container &vargsiukai, Container &galvociai) {
@@ -75,13 +77,15 @@ void studentuSkirstymas(const Container &studentai, Container &vargsiukai, Conta
         }
     }
 }
-/**
-* \brief Studentai irasomi i faila.
 
-* Si funkcija konteineryje esanciu studentu duomenis iraso i faila lenteles forma.
+/**
+* \brief Įrašo studentų duomenis į failą lentelės formatu.
+*
+* Ši funkcija įrašo konteineryje esančius studentų duomenis į tekstinį failą. Duomenys yra pateikiami lentelės formatu,
+* kuriame kiekvienas studento duomenų laukas (pvz., vardas, pavardė, galutinis balas) išvedamas atitinkamose stulpeliuose.
 *
 * \tparam Container Konteinerio tipas
-* \param failoPav Failo i kuri rasomi duomenis pavadinimas.
+* \param failoPav Tekstinio failo pavadinimas, į kurį bus įrašyti studentų duomenys.
 */
 template <typename Container>
 void rasytiIFaila(const Container& stud, const string& failoPav) {
@@ -105,13 +109,15 @@ void rasytiIFaila(const Container& stud, const string& failoPav) {
 }
 
 /**
-* \brief Studentu skirstimas pagal pazymi 2 strategija
+* \brief Studentų skirstymas pagal pažymį: 2 strategija.
 *
-* Si funkcija pirma isrusiuoja studentus pagal galutini vidurki, tada studentus, kuriu galutinis balas mazesnis uz 5 prideda prie vargsiuku konteinerio.
-* O studentus, kuriu galutinis balas aukstesnis, istrina is studentu konteinerio.
-* \tparam Container Konteinerio tipas.
-* \param studentai Konteineris, kuriame saugomi studentai
-* \param vargsiukai Konteineris, kuriame bus saugomi vargsiukai studentai.
+* Ši funkcija pirmiausia išrūšiuoja studentus pagal jų galutinį vidurkį, tada studentus, kurių galutinis balas yra mažesnis už 5,
+* prideda prie „vargšiukų“ konteinerio. Studentai, kurių galutinis balas yra aukštesnis, lieka originaliame konteineryje,
+* tačiau jų nebebus, kadangi jie bus pašalinti iš studentų konteinerio.
+*
+* \tparam Container Konteinerio tipas
+* \param studentai Konteineris, kuriame saugomi visi studentai.
+* \param vargsiukai Konteineris, kuriame bus saugomi vargšiukai studentai.
 */
 template <typename Container>
 void studentuSkaidymasIstrinant(Container& studentai, Container& vargsiukai){
@@ -135,15 +141,17 @@ void studentuSkaidymasIstrinant(Container& studentai, Container& vargsiukai){
 
     studentai.erase(studentai.begin(), boundary);
 }
+
 /**
-* \brief Skirtingi rusiavimo budai
-* Priklausomai nuo naudotojo pasirinkimo vykdomas rusiavimas.
-* 1 - rusiavimas pavarde.
-* 2 - rusiavimas mazejancia tvarka pagal galutini bala.
-* 3 - rusiavimas didejancia tvarka pagal galutini bala.
-* \tparam Container Konteinerio tipas.
-* \param stud Konteineris, kuriame esantys duomenys bus rusiuojami.
-* \param rusiavimoPasirinkimas Naudotojo pasirinktas rusiavimo budas.
+* \brief Skirtingi rūšiavimo būdai.
+* Priklausomai nuo naudotojo pasirinkimo vykdomas rūšiavimas.
+* 1 - rūšiavimas pagal pavardę abėcėlės tvarka.
+* 2 - rūšiavimas pagal galutinį balą mažėjimo tvarka (nuo didžiausio iki mažiausio).
+* 3 - rūšiavimas pagal galutinį balą didėjimo tvarka (nuo mažiausio iki didžiausio).
+*
+* \tparam Container Konteinerio tipas
+* \param stud Konteineris, kuriame esantys duomenys bus rūšiuojami.
+* \param rusiavimoPasirinkimas Naudotojo pasirinktas rūšiavimo būdas (1 - pavardė, 2 - mažėjanti tvarka pagal galutinį balą, 3 - didėjanti tvarka pagal galutinį balą).
 */
 template <typename Container>
 void rusiavimoBudai(Container& stud, int rusiavimoPasirinkimas ){
@@ -175,15 +183,19 @@ void rusiavimoBudai(Container& stud, int rusiavimoPasirinkimas ){
             }
         }
 }
+
 /**
-* \brief Patikrinama kiek vietos uzima konteineriai
+* \brief Patikrinama, kiek vietos užima konteineriai.
 *
-* Si funkcija spausdina, kiek koks konteineris uzima vietos.
-* \tparam Container Konteinerio tipas.
-* \param studentai Konteineris, kurio uzimama vieta bus apskaiciuojama
-* \param vargsiukai Konteineris, kurio uzimama vieta bus apskaiciuojama
-* \param galvociai Konteineris, kurio uzimama vieta bus apskaiciuojama
+* Ši funkcija apskaičiuoja ir išveda kiek vietos užima kiekvienas iš pateiktų konteinerių (pvz., std::vector, std::list) atmintyje.
+* Užimama vieta gali būti įvertinta pagal konteinerio dydį ir elementų kiekį, taip pat atsižvelgiant į tam tikras optimizacijas, pavyzdžiui, vietos rezervavimą.
+*
+* \tparam Container Konteinerio tipas
+* \param studentai Konteineris, kurio užimama vieta bus apskaičiuojama.
+* \param vargsiukai Konteineris, kurio užimama vieta bus apskaičiuojama.
+* \param galvociai Konteineris, kurio užimama vieta bus apskaičiuojama.
 */
+
 template <typename Container>
 void patikrintiAtmintiesNaudojima(const Container& studentai, const Container& vargsiukai, const Container& galvociai) {
     size_t bendrasDydis = studentai.size() * sizeof(typename Container::value_type);
@@ -196,13 +208,16 @@ void patikrintiAtmintiesNaudojima(const Container& studentai, const Container& v
     std::cout << "Bendra uzimama atmintis po suskirstymo: "
               << (bendrasDydis + vargsiukaiDydis + galvociaiDydis) << " baitu\n" << endl;
 }
+
 /**
-* \brief Patikrinama kiek vietos uzima konteineriai
+* \brief Patikrinama, kiek vietos užima konteineriai.
 *
-* Si funkcija spausdina, kiek koks konteineris uzima vietos.
-* \tparam Container Konteinerio tipas.
-* \param studentai Konteineris, kurio uzimama vieta bus apskaiciuojama
-* \param vargsiukai Konteineris, kurio uzimama vieta bus apskaiciuojama
+* Ši funkcija apskaičiuoja ir išveda, kiek atminties užima nurodyti konteineriai. Tai apima tiek struktūrą, tiek elementus, esančius konteineryje.
+* Funkcija spausdins kiekvieno konteinerio užimamą vietą atmintyje.
+*
+* \tparam Container Konteinerio tipas (pvz., std::vector, std::list).
+* \param studentai Konteineris, kurio užimama vieta bus apskaičiuojama.
+* \param vargsiukai Konteineris, kurio užimama vieta bus apskaičiuojama.
 */
 template <typename Container>
 void patikrintiAtmintiesNaudojimaBeGalv(const Container& studentai, const Container& vargsiukai) {
@@ -214,15 +229,21 @@ void patikrintiAtmintiesNaudojimaBeGalv(const Container& studentai, const Contai
     std::cout << "Bendra uzimama atmintis po suskirstymo: "
               << (bendrasDydis + vargsiukaiDydis) << " baitu\n" << endl;
 }
+
 /**
-* \brief Programos greicio analize
-* Si funkcija matuoja kiek laiko uztrunka, kol failas yra nuskaitomas, isrusiuojami duomenis, isskirstomi studentai ir irasomi i vargsiuku ir galvociu failus.
+* \brief Programos greičio analizė.
 *
-* \tparam Container Konteinerio tipas.
-* \param failoPav Failo, kuris bus testuojamas, pavadinimas.
-* \param stud Konteineris, i kuri bus irasomi duomenys
-* \param rusiavimoPasirinkimas Naudotojo pasirinkimas, kaip rusiuoti duomenis.
-* \param strategijosPasirinkimas Naudotojo pasirinkimas, kokia strategija naudoti skistant studentus i vargsiukus ir galvocius.
+* Ši funkcija matuoja, kiek laiko užtrunka atlikti šiuos veiksmus:
+* 1. Nuskaityti duomenis iš failo.
+* 2. Išrūšiuoti duomenis pagal nurodytą kriterijų.
+* 3. Skirstyti studentus į vargšiukus ir galvočius pagal pasirinktą strategiją.
+* 4. Įrašyti atitinkamus studentus į vargšiukų ir galvočių failus.
+*
+* \tparam Container Konteinerio tipas (pvz., std::vector, std::list), kuriame bus saugomi studentai.
+* \param failoPav Failo pavadinimas, kurį bus testuojama.
+* \param stud Konteineris, kuriame bus saugomi ir įrašomi duomenys.
+* \param rusiavimoPasirinkimas Naudotojo pasirinktas rusiavimo metodas (pvz., pagal pavardę, pagal balą).
+* \param strategijosPasirinkimas Naudotojo pasirinkta strategija studentų skirstymui į vargšiukus ir galvočius.
 */
 template <typename Container>
 void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas, int strategijosPasirinkimas) {
@@ -366,15 +387,18 @@ void failuTestavimas(string failoPav, Container& stud, int rusiavimoPasirinkimas
     }
     }
 }
+
 /**
-* \brief Naudotojo pasirinktos programos vykdymas
+* \brief Naudotojo pasirinktos programos vykdymas.
 *
-* Funkcijoje vykdomos funkcijos priklausomai nuo naudotojo pasirinkimo, kai pasirenkama programa turi veikti ir su vektoriais, ir su listais:
-* 0 - Duomenu ivedimas ranka
-* 1 - Duomenu nuskaitymas nuo failo
-* 3 - Programos greicio analize
-* \tparam
-* \param
+* Ši funkcija vykdo veiksmus, priklausomai nuo naudotojo pasirinkimo. Programa turi veikti tiek su vektoriais, tiek su listais.
+* Galimi pasirinkimai:
+*  - 0: Duomenų įvedimas ranka.
+*  - 1: Duomenų nuskaitymas iš failo.
+*  - 3: Programos greičio analizė.
+*
+* \tparam Container Konteinerio tipas (pvz., std::vector, std::list), su kuriuo bus atliekami veiksmai.
+* \param pasirinkimas Naudotojo pasirinktas veiksmas, kuris nusako, kokia funkcija bus vykdoma (0 - rankinis įvedimas, 1 - nuskaitymas iš failo, 3 - greičio analizė).
 */
 template <typename Container>
 void programosPasirinkimas(int ats, Container &studentai){

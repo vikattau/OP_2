@@ -2,20 +2,20 @@
 #define STUD_H_INCLUDED
 #include "Mylib.h"
 /**
-* \class Žmogus
-* \brief Bazine klase, skirta apibrezti zmogu.
+* \class Zmogus
+* \brief Bazinė klasė, skirta apibrėžti žmogų.
 *
-* Si klase yra abstrakti bazine klase, kuri apraso zmogaus varda ir pavarde.
+* Ši klasė yra abstrakti bazinė klasė, kuri aprašo žmogaus vardą ir pavardę.
 */
 class Zmogus {
 protected:
-    string vardas; /** Zmogaus vardas  */
-    string pavarde; /** Zmogaus pavarde */
+    string vardas; /** Žmogaus vardas  */
+    string pavarde; /** Žmogaus pavardė */
 public:
     /**
-    * \brief Konstruktorius su numatytomis reiksmemis.
-    * \param vardas_ zmogaus vardas (numatyta reiksme: tuscia eilute).
-    * \param pavarde_ zmogaus pavardė (numatyta reiksme: tuscia eilute).
+    * \brief Konstruktorius su numatytomis reikšmėmis.
+    * \param vardas_ žmogaus vardas (numatyta reikšmė: tuščia eilutė).
+    * \param pavarde_ žmogaus pavardė (numatyta reikšmė: tuščia eilutė).
     */
     Zmogus(const string vardas_ = "", const string pavarde_ = ""):
         vardas (vardas_), pavarde(pavarde_){}
@@ -27,39 +27,39 @@ public:
     * \brief Spausdinimo funkcija.
     *
     * Virtuali funkcija, skirta spausdinti objekto informacija.
-    * Si funkcija igyvendinta paveldinčioje klaseje.
+    * Ši funkcija įgyvendinta paveldinčioje klasėje.
     */
     virtual void spausdinti() const = 0;
     /**
     * \brief Virtualus destruktorius.
     *
-    * Naudoja numatytaja realizacija.
+    * Naudoja numatytąją realizaciją.
     */
     virtual ~Zmogus() = default;
 
 };
 /**
 * \class Studentas
-* \brief Isvestine klase (is zmogaus klases), skirta apibrezti studenta.
+* \brief Išvestinė klasė (is Žmogaus klasės), skirta apibrėžti studentą.
 *
-* Si klase yra isvestine klase, kuri apraso studento varda, pavarde (paveldetus is Zmogaus klases), namu darbu ir egzamino pazymius, apskaiciuoja galutinius balus.
+* Ši klasė yra išvestinė klasė, kuri aprašo studento vardą, pavardę (paveldėtus iš Žmogaus klasės), namų darbų ir egzamino pažymius, apskaičiuoja galutinius balus.
 */
 class Studentas : public Zmogus {
 private:
-    vector<int> nd_; /** Studento namu darbu pazymiai */
-    int egzaminas_; /** Studento egzamino pazymys*/
+    vector<int> nd_; /**< Studento namų darbų pažymiai */
+    int egzaminas_; /**< Studento egzamino pažymys*/
 public:
-    double galutinisBalasVidur; /** Apskaiciuojamas galutinis balas su namu darbu vidurkiu */
-    double galutinisBalasMed; /** Apskaiciuojamas galutinis balas su namu darbu mediana */
+    double galutinisBalasVidur; /** Apskaičiuojamas galutinis balas su namų darbų vidurkiu */
+    double galutinisBalasMed; /** Apskaičiuojamas galutinis balas su namų darbų mediana */
 
     /**
-    * \brief Konstruktorius su numatytomis reiksmemis.
-    * \param vardas_ Studento vardas paveldetas is zmogaus klases(numatyta reiksme: tuscia eilute).
-    * \param pavarde_ Studento pavardė pavaeldeta is zmogaus klases (numatyta reiksme: tuscia eilute).
-    * \param nd Studento namu darbu pazymiu vektorius (numatyta reiksme: tuscias vektorius).
-    * \param egzaminas Studento egzamino pazymys (numatyta reiksme: 0).
-    * \param galutinisBalasVidur Studento galutinis balas su namu darbu vidurkiu (numatyta reiksme: 0.0).
-    * \param galutinisBalasMed Studento galutinis balas su namu darbu mediana (numatyta reiksme: 0.0).
+    * \brief Konstruktorius su numatytomis reikšmėmis.
+    * \param vardas_ Studento vardas, paveldėtas iš žmogaus klasės (numatytoji reikšmė: tuščia eilutė).
+    * \param pavarde_ Studento pavardė, paveldėta iš žmogaus klasės (numatytoji reikšmė: tuščia eilutė).
+    * \param nd Studento namų darbų pažymių vektorius (numatytoji reikšmė: tuščias vektorius).
+    * \param egzaminas Studento egzamino pažymys (numatytoji reikšmė: 0).
+    * \param galutinisBalasVidur Studento galutinis balas su namų darbų vidurkiu (numatytoji reikšmė: 0.0).
+    * \param galutinisBalasMed Studento galutinis balas su namų darbų mediana (numatytoji reikšmė: 0.0).
     */
     Studentas(const string& vardas_ = "", const string& pavarde_ = "",
             const vector<int>& nd = {}, int egzaminas = 0,
@@ -70,9 +70,9 @@ public:
     /**
     * \brief Kopijavimo konstruktorius.
     *
-    * Sukuria nauja Studentas objekta, kurio reiksmes identiskos perduotam objektui.
+    * Sukuria naują Studentas objektą, kurio reikšmės identiškos perduotam objektui.
     *
-    * \param other Kitas Studentas objektas, kurio reiksmes bus nukopijuotos.
+    * \param other Kitas Studentas objektas, kurio reikšmės bus nukopijuotos.
     */
     Studentas(const Studentas& other)
         : Zmogus(other), nd_(other.nd_),
@@ -82,11 +82,12 @@ public:
     /**
     * \brief Kopijavimo priskyrimo operatorius.
     *
-    * Leidzia priskirti vieno Studentas objekto reiksmes kitam.
+    * Leidžia priskirti vieno Studentas objekto reikšmes kitam.
     *
-    * \param other Kitas Studentas objektas, kurio reiksmes bus priskirtos.
-    * \return Nuoroda i dabartini objekta.
+    * \param other Kitas Studentas objektas, kurio reikšmės bus priskirtos.
+    * \return Nuoroda į dabartinį objektą.
     */
+
     Studentas& operator=(const Studentas& other) {
         if (this == &other) return *this;
         Zmogus::operator = (other);
@@ -106,46 +107,51 @@ public:
     void setPavarde(const string& p) { pavarde = p; }
     void setPazymiai(const vector<int>& pazymiai) { nd_ = pazymiai; }
     void setEgzaminas(int egz) { egzaminas_ = egz; }
+
     /**
     * \brief Nuskaitymo operatorius.
-    * Leidzia nuskaityti studento duomenis, kurie buvo ivesti ranka.
-    * \param in Ivedimo srautas.
+    * Leidžia nuskaityti studento duomenis, kurie buvo įvesti ranka.
+    * \param in Įvedimo srautas.
     * \param s Studentas objektas, kuriame bus saugomi nuskaityti duomenys.
     */
     friend istream& operator>>(istream& in, Studentas& s);
+
     /**
-    * \brief Nuskaitymo operatorius duomenims is failo.
-    * Leidzia nuskaityti duomenis is failu.
-    * \param in Ivesties failo srautas, is kurio bus nuskaitomi duomenis.
+    * \brief Nuskaitymo operatorius duomenims iš failo.
+    * Leidžia nuskaityti duomenis iš failo.
+    * \param in Įvesties failo srautas, iš kurio bus nuskaitomi duomenys.
     * \param studentas Studentas objektas, kuriame bus saugomi nuskaityti duomenys.
     */
     friend ifstream& operator>>(ifstream& in, Studentas& studentas);
+
     /**
-    * \brief Isvedimo operatorius
-    * Leidžia isvesti Studento objekto duomenis i ekrana arba faila.
-    * \param out Isvesties srautas, i kuri bus isvedami duomenys.
-    * \param studentas Studento objektas, kurio duomenys isvedami.
+    * \brief Išvedimo operatorius.
+    * Leidžia išvesti Studento objekto duomenis į ekraną arba failą.
+    * \param out Išvesties srautas, į kurį bus išvedami duomenys.
+    * \param studentas Studento objektas, kurio duomenys išvedami.
     */
     friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas);
 
     /**
     * \brief Funkcija, spausdinanti studento duomenis.
     *
-    * Si funkcija realizuoja virtualia funkcija is bazines klases Zmogus.
+    * Ši funkcija realizuoja virtualią funkciją iš bazinės klasės Zmogus.
     */
     void spausdinti() const override {
         cout << "Vardas: " << vardas << ", Pavarde: " << pavarde << endl;
     }
+
     /**
-    * \brief Generuoja atsitiktinius pazymius
+    * \brief Generuoja atsitiktinius pažymius.
     *
-    * Si funkcija Studentas objektui generuoja atsitiktinius 5 namu darbu ir egzamino pazymius.
+    * Ši funkcija Studentas objektui generuoja atsitiktinius 5 namų darbų ir egzamino pažymius.
     */
     void atsitiktiniuBaluGeneravimas();
+
     /**
-    * \brief Istrina duomenis
+    * \brief Ištrina duomenis.
     *
-    * Istrina (isvalo) Studentas objekto duomeis.
+    * Ištrina (išvalo) Studentas objekto duomenis.
     */
     void valymas();
 
@@ -161,62 +167,68 @@ public:
     }
 };
 /**
-* \brief Apskaiciuoja galutini bala su namu darbu vidurkiu
+* \brief Apskaičiuoja galutinį balą su namų darbų vidurkiu.
 *
-* Si funkcija apskaiciuoja galutini bala studentui.
-* Pirma apskaiciuojamas namu darbu pazymiu vidurkis, tada pagal formule ndVidurkis * 0.4 + egzaminoPazymys * 0.6 apskaiciuojamas galutinis balas.
-* \param studentas Studentas objektas, kurio galutinis balas bus skaiciuojamas.
-* \return Galutinis balas pagal namu darbu vidurki.
+* Ši funkcija apskaičiuoja galutinį balą studentui.
+* Pirmiausia apskaičiuojamas namų darbų pažymių vidurkis, tada pagal formulę ndVidurkis * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas.
+* \param studentas Studentas objektas, kurio galutinis balas bus skaičiuojamas.
+* \return Galutinis balas pagal namų darbų vidurkį.
 */
 double skaicGalutiniBalaVidur(const Studentas &studentas);
+
 /**
-* \brief Apskaiciuoja galutini bala su namu darbu mediana.
+* \brief Apskaičiuoja galutinį balą su namų darbų mediana.
 *
-* Si funkcija apskaiciuoja galutini bala studentui.
-* Pirma apskaiciuojama namu darbu pazymiu mediana, tada pagal formule ndMediana * 0.4 + egzaminoPazymys * 0.6 apskaiciuojamas galutinis balas.
-* \param studentas Studentas objektas, kurio galutinis balas bus skaiciuojamas.
-* \return Galutinis balas pagal namu darbu mediana.
+* Ši funkcija apskaičiuoja galutinį balą studentui.
+* Pirmiausia apskaičiuojama namų darbų pažymių mediana, tada pagal formulę ndMediana * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas.
+* \param studentas Studentas objektas, kurio galutinis balas bus skaičiuojamas.
+* \return Galutinis balas pagal namų darbų medianą.
 */
 double skaicGalutiniBalaMed(const Studentas &studentas);
+
 /**
-* \brief Generuojami studentu failai
-* Sia funkcija generuojami failai su pasirinktu studentu skaiciumi (1tukst., 10tukst., 100tukst., 1mln., 10mln.).
-* Sukuriamas atitinkamas skaicius atsitiktinai generuotu studentu su vardas ir pavardemis bei atsitiktiniais namu darbu ir egzamino pazymiais.
-* Studenta irasomi i faila lenteles forma.
+* \brief Generuojami studentų failai
+* Šia funkcija generuojami failai su pasirinktu studentų skaičiumi (1 tūkst., 10 tūkst., 100 tūkst., 1 mln., 10 mln.).
+* Sukuriamas atitinkamas skaičius atsitiktinai generuotų studentų su vardais ir pavardėmis bei atsitiktiniais namų darbų ir egzamino pažymiais.
+* Studentai įrašomi į failą lentelės forma.
 *
-* \param studentuSkaicius Skaicius, kiek studentu bus generuojama.
-* \param failoPav Sukurto failo su studentais pavadinimas
+* \param studentuSkaicius Skaičius, kiek studentų bus generuojama.
+* \param failoPav Sukurto failo su studentais pavadinimas.
 */
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
+
 /**
-* \brief Studentai isrusiuojami pagal pavardes
-*Si funkcija isrusiuoja studentus pagal pavardes abeceles tvarka.
+* \brief Studentai išrūšiuojami pagal pavardes
+* Ši funkcija išrūšiuoja studentus pagal pavardes abėcėlės tvarka.
 *
 * \param Lok Studento objektas, kuris bus lyginamas su kitu.
-* \param stud Kitas Studnento objektas, kuris bus lyginamas su pirmu.
+* \param stud Kitas Studento objektas, kuris bus lyginamas su pirmu.
 */
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
+
 /**
-* \brief Studentu grupavimas skaidymo budu (vector)
-* Si funkcija pereina per visus vektoriuje esancius studentus ir skirsto juos pagal galutini pazymi.
-* Jei galutinis balas mazesnis uz 5, studentai pridedami prie vargsiuku vektoriaus ir istrinami is studentu vektoriaus.
+* \brief Studentų grupavimas skaidymo būdu (vector)
+* Ši funkcija pereina per visus vektoriuje esančius studentus ir skirsto juos pagal galutinį pažymį.
+* Jei galutinis balas mažesnis už 5, studentai pridedami prie vargšiukų vektoriaus ir ištrinami iš studentų vektoriaus.
 *
 * \param studentai Vektorius, kuriame saugomi visi studentai
-* \param vargsiukai Vektorius, kuriame bus visi vargsiukai studentai.
+* \param vargsiukai Vektorius, kuriame bus visi vargšiukai studentai.
 */
 void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai);
+
 /**
-* \brief Studentu grupavimas skaidymo budu (list)
-* Si funkcija pereina per visus liste esancius studentus ir skirsto juos pagal galutini pazymi.
-* Jei galutinis balas mazesnis uz 5, studentai pridedami prie vargsiuku listo ir istrinami is studentu listo.
+* \brief Studentų grupavimas skaidymo būdu (list)
+* Ši funkcija pereina per visus liste esančius studentus ir skirsto juos pagal galutinį pažymį.
+* Jei galutinis balas mažesnis už 5, studentai pridedami prie vargšiukų listo ir ištrinami iš studentų listo.
 *
 * \param studentai Listas, kuriame saugomi visi studentai
-* \param vargsiukai Listas, kuriame bus visi vargsiukai studentai.
+* \param vargsiukai Listas, kuriame bus visi vargšiukai studentai.
 */
 void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai);
+
 /**
-* \brief Triju metodu taisykles demonstravimas
-* Funkcija, demonstruoja klases triju metodu taisykles veikima.
+* \brief Trijų metodų taisyklių demonstravimas
+* Ši funkcija demonstruoja, kaip veikia klasės trijų metodų taisyklės (konstruktorius, kopijavimo konstruktorius, kopijavimo priskyrimo operatorius).
 */
 void pademonstruotiTrysMetodus();
 #endif // STUD_H_INCLUDED

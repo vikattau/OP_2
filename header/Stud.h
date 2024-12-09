@@ -136,7 +136,17 @@ public:
     void spausdinti() const override {
         cout << "Vardas: " << vardas << ", Pavarde: " << pavarde << endl;
     }
+    /**
+    * \brief Generuoja atsitiktinius pazymius
+    *
+    * Si funkcija Studentas objektui generuoja atsitiktinius 5 namu darbu ir egzamino pazymius.
+    */
     void atsitiktiniuBaluGeneravimas();
+    /**
+    * \brief Istrina duomenis
+    *
+    * Istrina (isvalo) Studentas objekto duomeis.
+    */
     void valymas();
 
     /**
@@ -150,11 +160,63 @@ public:
         nd_.clear();
     }
 };
+/**
+* \brief Apskaiciuoja galutini bala su namu darbu vidurkiu
+*
+* Si funkcija apskaiciuoja galutini bala studentui.
+* Pirma apskaiciuojamas namu darbu pazymiu vidurkis, tada pagal formule ndVidurkis * 0.4 + egzaminoPazymys * 0.6 apskaiciuojamas galutinis balas.
+* \param studentas Studentas objektas, kurio galutinis balas bus skaiciuojamas.
+* \return Galutinis balas pagal namu darbu vidurki.
+*/
 double skaicGalutiniBalaVidur(const Studentas &studentas);
+/**
+* \brief Apskaiciuoja galutini bala su namu darbu mediana.
+*
+* Si funkcija apskaiciuoja galutini bala studentui.
+* Pirma apskaiciuojama namu darbu pazymiu mediana, tada pagal formule ndMediana * 0.4 + egzaminoPazymys * 0.6 apskaiciuojamas galutinis balas.
+* \param studentas Studentas objektas, kurio galutinis balas bus skaiciuojamas.
+* \return Galutinis balas pagal namu darbu mediana.
+*/
 double skaicGalutiniBalaMed(const Studentas &studentas);
+/**
+* \brief Generuojami studentu failai
+* Sia funkcija generuojami failai su pasirinktu studentu skaiciumi (1tukst., 10tukst., 100tukst., 1mln., 10mln.).
+* Sukuriamas atitinkamas skaicius atsitiktinai generuotu studentu su vardas ir pavardemis bei atsitiktiniais namu darbu ir egzamino pazymiais.
+* Studenta irasomi i faila lenteles forma.
+*
+* \param studentuSkaicius Skaicius, kiek studentu bus generuojama.
+* \param failoPav Sukurto failo su studentais pavadinimas
+*/
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
+/**
+* \brief Studentai isrusiuojami pagal pavardes
+*Si funkcija isrusiuoja studentus pagal pavardes abeceles tvarka.
+*
+* \param Lok Studento objektas, kuris bus lyginamas su kitu.
+* \param stud Kitas Studnento objektas, kuris bus lyginamas su pirmu.
+*/
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
+/**
+* \brief Studentu grupavimas skaidymo budu (vector)
+* Si funkcija pereina per visus vektoriuje esancius studentus ir skirsto juos pagal galutini pazymi.
+* Jei galutinis balas mazesnis uz 5, studentai pridedami prie vargsiuku vektoriaus ir istrinami is studentu vektoriaus.
+*
+* \param studentai Vektorius, kuriame saugomi visi studentai
+* \param vargsiukai Vektorius, kuriame bus visi vargsiukai studentai.
+*/
 void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai);
+/**
+* \brief Studentu grupavimas skaidymo budu (list)
+* Si funkcija pereina per visus liste esancius studentus ir skirsto juos pagal galutini pazymi.
+* Jei galutinis balas mazesnis uz 5, studentai pridedami prie vargsiuku listo ir istrinami is studentu listo.
+*
+* \param studentai Listas, kuriame saugomi visi studentai
+* \param vargsiukai Listas, kuriame bus visi vargsiukai studentai.
+*/
 void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai);
+/**
+* \brief Triju metodu taisykles demonstravimas
+* Funkcija, demonstruoja klases triju metodu taisykles veikima.
+*/
 void pademonstruotiTrysMetodus();
 #endif // STUD_H_INCLUDED

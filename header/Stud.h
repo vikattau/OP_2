@@ -187,7 +187,7 @@ double skaicGalutiniBalaVidur(const Studentas &studentas);
 double skaicGalutiniBalaMed(const Studentas &studentas);
 
 /**
-* \brief Generuojami studentų failai
+* \brief Generuojami studentų failai.
 * Šia funkcija generuojami failai su pasirinktu studentų skaičiumi (1 tūkst., 10 tūkst., 100 tūkst., 1 mln., 10 mln.).
 * Sukuriamas atitinkamas skaičius atsitiktinai generuotų studentų su vardais ir pavardėmis bei atsitiktiniais namų darbų ir egzamino pažymiais.
 * Studentai įrašomi į failą lentelės forma.
@@ -198,7 +198,7 @@ double skaicGalutiniBalaMed(const Studentas &studentas);
 void generuotiStudentus (int studentuSkaicius, const string &failoPav);
 
 /**
-* \brief Studentai išrūšiuojami pagal pavardes
+* \brief Studentai išrūšiuojami pagal pavardes.
 * Ši funkcija išrūšiuoja studentus pagal pavardes abėcėlės tvarka.
 *
 * \param Lok Studento objektas, kuris bus lyginamas su kitu.
@@ -207,7 +207,7 @@ void generuotiStudentus (int studentuSkaicius, const string &failoPav);
 bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
 
 /**
-* \brief Studentų grupavimas skaidymo būdu (vector)
+* \brief Studentų grupavimas skaidymo būdu (vector).
 * Ši funkcija pereina per visus vektoriuje esančius studentus ir skirsto juos pagal galutinį pažymį.
 * Jei galutinis balas mažesnis už 5, studentai pridedami prie vargšiukų vektoriaus ir ištrinami iš studentų vektoriaus.
 *
@@ -217,7 +217,7 @@ bool rusiavimasPavarde(const Studentas &Lok, const Studentas &stud);
 void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& vargsiukai);
 
 /**
-* \brief Studentų grupavimas skaidymo būdu (list)
+* \brief Studentų grupavimas skaidymo būdu (list).
 * Ši funkcija pereina per visus liste esančius studentus ir skirsto juos pagal galutinį pažymį.
 * Jei galutinis balas mažesnis už 5, studentai pridedami prie vargšiukų listo ir ištrinami iš studentų listo.
 *
@@ -227,7 +227,7 @@ void VectorstudentuSkaidymas(vector<Studentas>& studentai, vector<Studentas>& va
 void ListStudentuSkaidymas(list<Studentas> & studentai, list<Studentas>& vargsiukai);
 
 /**
-* \brief Trijų metodų taisyklių demonstravimas
+* \brief Trijų metodų taisyklių demonstravimas.
 * Ši funkcija demonstruoja, kaip veikia klasės trijų metodų taisyklės (konstruktorius, kopijavimo konstruktorius, kopijavimo priskyrimo operatorius).
 */
 void pademonstruotiTrysMetodus();

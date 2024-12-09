@@ -1,3 +1,16 @@
+/**
+ * \mainpage Projekto dokumentacija
+ *
+ * \section intro Įvadas
+ *
+ * Šis projektas skirtas studentų informacijos tvarkymui ir analizei.
+ * Čia pateikiama informacija apie projekto struktūrą, funkcijas ir klases.
+ *
+ * \section features Funkcionalumas
+ * - Studentų duomenų nuskaitymas iš failo ir ivedimas ranka.
+ * - Galutinio balo apskaičiavimas (vidurkis ir mediana).
+ * - Duomenų spausdinimas į konsolę arba failą.
+ */
 #include "Mylib.h"
 #include "Stud.h"
 #include "templates.h"

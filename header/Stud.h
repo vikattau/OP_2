@@ -2,7 +2,7 @@
 #define STUD_H_INCLUDED
 #include "Mylib.h"
 /**
-* \class Zmogus
+* \class Žmogus
 * \brief Bazine klase, skirta apibrezti zmogu.
 *
 * Si klase yra abstrakti bazine klase, kuri apraso zmogaus varda ir pavarde.

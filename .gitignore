@@ -9,3 +9,32 @@ bin/
 *.out
 *.exe
 studentai*.txt
+
+# Ignore Visual Studio files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+.vs/
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ebug_<configuration>/
+[Dd]Release/
+[Dd]ReleasePublic/
+[Dd]Release_<configuration>/
+x64/
+x86/
+ARM/
+bld/
+build/
+out/
+Uzduotis2/

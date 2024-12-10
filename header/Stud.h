@@ -6,6 +6,7 @@
 * \brief Bazinė klasė, skirta apibrėžti žmogų.
 *
 * Ši klasė yra abstrakti bazinė klasė, kuri aprašo žmogaus vardą ir pavardę.
+* 
 */
 class Zmogus {
 protected:

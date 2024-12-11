@@ -117,12 +117,6 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af49f04b5af1b8d7ad3ffb28412f33fa6" id="r_af49f04b5af1b8d7ad3ffb28412f33fa6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af49f04b5af1b8d7ad3ffb28412f33fa6">skaicGalutiniBalaVidur</a> (const <a class="el" href="class_studentas.html">Studentas</a> &amp;studentas)</td></tr>
-<tr class="memdesc:af49f04b5af1b8d7ad3ffb28412f33fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apskaičiuoja galutinį balą su namų darbų vidurkiu.  <br /></td></tr>
-<tr class="separator:af49f04b5af1b8d7ad3ffb28412f33fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39427f0b4bf4a9ab8eb58db24310b83e" id="r_a39427f0b4bf4a9ab8eb58db24310b83e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39427f0b4bf4a9ab8eb58db24310b83e">skaicGalutiniBalaMed</a> (const <a class="el" href="class_studentas.html">Studentas</a> &amp;studentas)</td></tr>
-<tr class="memdesc:a39427f0b4bf4a9ab8eb58db24310b83e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apskaičiuoja galutinį balą su namų darbų mediana.  <br /></td></tr>
-<tr class="separator:a39427f0b4bf4a9ab8eb58db24310b83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93bec814abcdf5eb64dfe2067af1776c" id="r_a93bec814abcdf5eb64dfe2067af1776c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93bec814abcdf5eb64dfe2067af1776c">generuotiStudentus</a> (int studentuSkaicius, const string &amp;failoPav)</td></tr>
 <tr class="memdesc:a93bec814abcdf5eb64dfe2067af1776c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generuojami studentų failai. Šia funkcija generuojami failai su pasirinktu studentų skaičiumi (1 tūkst., 10 tūkst., 100 tūkst., 1 mln., 10 mln.). Sukuriamas atitinkamas skaičius atsitiktinai generuotų studentų su vardais ir pavardėmis bei atsitiktiniais namų darbų ir egzamino pažymiais. Studentai įrašomi į failą lentelės forma.  <br /></td></tr>
 <tr class="separator:a93bec814abcdf5eb64dfe2067af1776c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,58 +240,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a39427f0b4bf4a9ab8eb58db24310b83e" name="a39427f0b4bf4a9ab8eb58db24310b83e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39427f0b4bf4a9ab8eb58db24310b83e">&#9670;&#160;</a></span>skaicGalutiniBalaMed()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double skaicGalutiniBalaMed </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_studentas.html">Studentas</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>studentas</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Apskaičiuoja galutinį balą su namų darbų mediana. </p>
-<p>Ši funkcija apskaičiuoja galutinį balą studentui. Pirmiausia apskaičiuojama namų darbų pažymių mediana, tada pagal formulę ndMediana * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">studentas</td><td><a class="el" href="class_studentas.html" title="Išvestinė klasė (is Žmogaus klasės), skirta apibrėžti studentą.">Studentas</a> objektas, kurio galutinis balas bus skaičiuojamas. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Galutinis balas pagal namų darbų medianą. </dd></dl>
-
-</div>
-</div>
-<a id="af49f04b5af1b8d7ad3ffb28412f33fa6" name="af49f04b5af1b8d7ad3ffb28412f33fa6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af49f04b5af1b8d7ad3ffb28412f33fa6">&#9670;&#160;</a></span>skaicGalutiniBalaVidur()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double skaicGalutiniBalaVidur </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_studentas.html">Studentas</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>studentas</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Apskaičiuoja galutinį balą su namų darbų vidurkiu. </p>
-<p>Ši funkcija apskaičiuoja galutinį balą studentui. Pirmiausia apskaičiuojamas namų darbų pažymių vidurkis, tada pagal formulę ndVidurkis * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">studentas</td><td><a class="el" href="class_studentas.html" title="Išvestinė klasė (is Žmogaus klasės), skirta apibrėžti studentą.">Studentas</a> objektas, kurio galutinis balas bus skaičiuojamas. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Galutinis balas pagal namų darbų vidurkį. </dd></dl>
 
 </div>
 </div>

@@ -110,12 +110,87 @@ public:
     void setEgzaminas(int egz) { egzaminas_ = egz; }
 
     /**
+    * \brief Apskaičiuoja galutinį balą su namų darbų vidurkiu.
+    *
+    * Ši funkcija apskaičiuoja galutinį balą studentui.
+    * Pirmiausia apskaičiuojamas namų darbų pažymių vidurkis, tada pagal formulę ndVidurkis * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas.
+    * \param studentas Studentas objektas, kurio galutinis balas bus skaičiuojamas.
+    * \return Galutinis balas pagal namų darbų vidurkį.
+    */
+    friend double skaicGalutiniBalaVidur(const Studentas& student);
+
+    /**
+    * \brief Apskaičiuoja galutinį balą su namų darbų mediana.
+    *
+    * Ši funkcija apskaičiuoja galutinį balą studentui.
+    * Pirmiausia apskaičiuojama namų darbų pažymių mediana, tada pagal formulę ndMediana * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas.
+    * \param studentas Studentas objektas, kurio galutinis balas bus skaičiuojamas.
+    * \return Galutinis balas pagal namų darbų medianą.
+    */
+    friend double skaicGalutiniBalaMed(const Studentas& student);
+
+    /**
     * \brief Nuskaitymo operatorius.
     * Leidžia nuskaityti studento duomenis, kurie buvo įvesti ranka.
     * \param in Įvedimo srautas.
     * \param s Studentas objektas, kuriame bus saugomi nuskaityti duomenys.
     */
-    friend istream& operator>>(istream& in, Studentas& s);
+    friend istream& operator>>(istream& in, Studentas& studentas) {
+        cout << "Iveskite Varda: ";
+        in >> studentas.vardas;
+        cout << "Iveskite Pavarde: ";
+        in >> studentas.pavarde;
+
+        while (true) {
+            cout << "Ar norite, kad pazymiai butu generuojami automatiskai? Jeigu Taip iveskite T, jeigu Ne - N: ";
+            string ats;
+            in >> ats;
+            in.ignore(numeric_limits<streamsize>::max(), '\n');
+            if (ats == "T" || ats == "t") {
+                studentas.atsitiktiniuBaluGeneravimas();
+                break;
+            }
+            else if (ats == "N" || ats == "n") {
+                cout << "Iveskite egzamino rezultata (0 - 10): ";
+                while (!(in >> studentas.egzaminas_) || studentas.egzaminas_ < 0 || studentas.egzaminas_ > 10) {
+                    in.clear();
+                    in.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Neteisingai ivedete, bandykite dar karta: ";
+                }
+                cout << "Iveskite Namu Darbu pazymius 1 - 10 (noredami uzbaigti ivedima iveskite 0): \n";
+                studentas.nd_.clear();
+                int x;
+                bool ivestasPazymys = false;
+                while (true) {
+                    cout << "Pazymys: ";
+                    while (!(in >> x) || x < 0 || x > 10) {
+                        in.clear();
+                        in.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "Neteisingai ivedete, bandykite dar karta: ";
+                    }
+
+                    if (x == 0) {
+                        if (!ivestasPazymys) {
+                            cout << "Turite ivesti bent viena pazymi. \n";
+                            continue;
+                        }
+                        break;
+                    }
+                    studentas.nd_.push_back(x);
+                    ivestasPazymys = true;
+                }
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
+            }
+            else {
+                cout << "Neteisingai ivedete. Prasome iveskite T arba N." << endl;
+            }
+        }
+        studentas.galutinisBalasVidur = skaicGalutiniBalaVidur(studentas);
+        studentas.galutinisBalasMed = skaicGalutiniBalaMed(studentas);
+
+        return in;
+    }
 
     /**
     * \brief Nuskaitymo operatorius duomenims iš failo.
@@ -123,7 +198,25 @@ public:
     * \param in Įvesties failo srautas, iš kurio bus nuskaitomi duomenys.
     * \param studentas Studentas objektas, kuriame bus saugomi nuskaityti duomenys.
     */
-    friend ifstream& operator>>(ifstream& in, Studentas& studentas);
+    friend ifstream& operator>>(ifstream& in, Studentas& studentas) {
+        std::string line;
+        std::getline(in, line);
+        if (line.empty()) return in;
+
+        std::stringstream ss(line);
+        ss >> studentas.vardas >> studentas.pavarde;
+
+        studentas.nd_.resize(5);
+        for (int& grade : studentas.nd_) {
+            ss >> grade;
+        }
+
+        ss >> studentas.egzaminas_;
+        studentas.galutinisBalasVidur = skaicGalutiniBalaVidur(studentas);
+        studentas.galutinisBalasMed = skaicGalutiniBalaMed(studentas);
+
+        return in;
+    }
 
     /**
     * \brief Išvedimo operatorius.
@@ -131,7 +224,16 @@ public:
     * \param out Išvesties srautas, į kurį bus išvedami duomenys.
     * \param studentas Studento objektas, kurio duomenys išvedami.
     */
-    friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas);
+    friend std::ostream& operator<<(std::ostream& out, const Studentas& studentas) {
+        out << setw(15) << left << studentas.pavarde
+            << setw(15) << left << studentas.vardas
+            << setw(20) << left << fixed << setprecision(2)
+            << studentas.galutinisBalasVidur
+            << setw(20) << left << fixed << setprecision(2)
+            << studentas.galutinisBalasMed;
+
+        return out;
+    }
 
     /**
     * \brief Funkcija, spausdinanti studento duomenis.
@@ -167,25 +269,6 @@ public:
         nd_.clear();
     }
 };
-/**
-* \brief Apskaičiuoja galutinį balą su namų darbų vidurkiu.
-*
-* Ši funkcija apskaičiuoja galutinį balą studentui.
-* Pirmiausia apskaičiuojamas namų darbų pažymių vidurkis, tada pagal formulę ndVidurkis * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas.
-* \param studentas Studentas objektas, kurio galutinis balas bus skaičiuojamas.
-* \return Galutinis balas pagal namų darbų vidurkį.
-*/
-double skaicGalutiniBalaVidur(const Studentas &studentas);
-
-/**
-* \brief Apskaičiuoja galutinį balą su namų darbų mediana.
-*
-* Ši funkcija apskaičiuoja galutinį balą studentui.
-* Pirmiausia apskaičiuojama namų darbų pažymių mediana, tada pagal formulę ndMediana * 0.4 + egzaminoPazymys * 0.6 apskaičiuojamas galutinis balas.
-* \param studentas Studentas objektas, kurio galutinis balas bus skaičiuojamas.
-* \return Galutinis balas pagal namų darbų medianą.
-*/
-double skaicGalutiniBalaMed(const Studentas &studentas);
 
 /**
 * \brief Generuojami studentų failai.

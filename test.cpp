@@ -2,13 +2,7 @@
 
 #include "pch.h"
 #include <sstream>
-#include "Stud.h" // Include your class header file
-
-TEST(StudentasTest, ConstructorAndAccessors) {
-    Studentas zm("Jonas", "Petrauskas");
-    EXPECT_EQ(zm.getVardas(), "Jonas");
-    EXPECT_EQ(zm.getPavarde(), "Petrauskas");
-}
+#include "Stud.h" 
 
 TEST(StudentasTest, ParameterizedConstructor) {
     vector<int> nd = { 8, 9, 10 };
@@ -20,7 +14,19 @@ TEST(StudentasTest, ParameterizedConstructor) {
     EXPECT_DOUBLE_EQ(studentas.galutinisBalasVidur, 8.5);
     EXPECT_DOUBLE_EQ(studentas.galutinisBalasMed, 9.0);
 }
+TEST(StudentasTest, CopyConstructor) {
+    vector<int> nd = { 8, 9, 10 };
+    Studentas original("Jonas", "Petrauskas", nd, 9, 8.5, 9.0);
 
+    Studentas copy(original);
+
+    EXPECT_EQ(copy.getVardas(), original.getVardas());
+    EXPECT_EQ(copy.getPavarde(), original.getPavarde());
+    EXPECT_EQ(copy.getNd(), original.getNd());
+    EXPECT_EQ(copy.getEgz(), original.getEgz());
+    EXPECT_DOUBLE_EQ(copy.galutinisBalasVidur, original.galutinisBalasVidur);
+    EXPECT_DOUBLE_EQ(copy.galutinisBalasMed, original.galutinisBalasMed);
+}
 TEST(StudentasTest, Destructor) {
     Studentas* studentas = new Studentas("Jonas", "Jonaitis");
     delete studentas;
@@ -37,6 +43,9 @@ TEST(InputOperatorTest, ValidInput) {
     EXPECT_EQ(student.getVardas(), "Jonas");
     EXPECT_EQ(student.getPavarde(), "Pavardenis");
 
+    // EXPECT_GT - expect greater than 
+    // EXPECT_GE - expect greater than or equal to
+    // EXPECT_LE - expect less than or equal to
     EXPECT_GT(student.getNd().size(), 0);  
     EXPECT_GE(student.getEgz(), 0);  
     EXPECT_LE(student.getEgz(), 10);
@@ -50,17 +59,14 @@ TEST(StudentasTest, OutputOperatorTest) {
     Studentas studentas;
     studentas.setVardas("Jonas");
     studentas.setPavarde("Jonaitis");
-    studentas.galutinisBalasVidur = 7.5;  // Example of setting some values
+    studentas.galutinisBalasVidur = 7.5;  
     studentas.galutinisBalasMed = 8.0;
 
-    // Expected output in the format defined by your operator<<
-    std::string expected_output = "Jonaitis       Jonas          7.50                8.00                ";
+    string expected_output = "Jonaitis       Jonas          7.50                8.00                ";
 
-    // Capture the output using a stringstream
     std::ostringstream output;
     output << studentas;
 
-    // Compare the output with the expected string
     EXPECT_EQ(output.str(), expected_output);
 }
 
